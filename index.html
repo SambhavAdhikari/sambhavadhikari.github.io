@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAMBHAV — CS Student & Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ░░ LOADER ░░ -->
+  <div id="loader">
+    <canvas id="loader-canvas"></canvas>
+    <div class="loader-content">
+      <div class="loader-terminal">
+        <div class="loader-line" id="l1">$ initializing system<span class="blink">_</span></div>
+        <div class="loader-line" id="l2">$ loading sambhav.portfolio<span class="blink">_</span></div>
+        <div class="loader-line" id="l3">$ establishing connection<span class="blink">_</span></div>
+        <div class="loader-line" id="l4">$ <span class="accent">ACCESS GRANTED</span> ██████████ 100%</div>
+      </div>
+      <div class="loader-bar-wrap">
+        <div class="loader-bar" id="loader-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ░░ CURSOR ░░ -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+  <canvas id="cursor-trail"></canvas>
+
+  <!-- ░░ MATRIX RAIN BG ░░ -->
+  <canvas id="matrix-canvas"></canvas>
+
+  <!-- ░░ SCANLINES ░░ -->
+  <div class="scanlines"></div>
+
+  <!-- ░░ NAV ░░ -->
+  <nav id="navbar">
+    <div class="nav-brand">
+      <span class="nav-bracket">[</span>
+      <span class="nav-name glitch-small" data-text="SAMBHAV">SAMBHAV</span>
+      <span class="nav-bracket">]</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about" class="nav-link magnetic"><span class="nav-num">01.</span>About</a></li>
+      <li><a href="#skills" class="nav-link magnetic"><span class="nav-num">02.</span>Skills</a></li>
+      <li><a href="#projects" class="nav-link magnetic"><span class="nav-num">03.</span>Projects</a></li>
+      <li><a href="#hackathons" class="nav-link magnetic"><span class="nav-num">04.</span>Hackathons</a></li>
+      <li><a href="#contact" class="nav-link magnetic"><span class="nav-num">05.</span>Contact</a></li>
+    </ul>
+    <div class="nav-status">
+      <span class="status-dot"></span>
+      <span class="status-text">AVAILABLE FOR OPPORTUNITIES</span>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ░░ MOBILE MENU ░░ -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about" class="mobile-link">01. About</a>
+    <a href="#skills" class="mobile-link">02. Skills</a>
+    <a href="#projects" class="mobile-link">03. Projects</a>
+    <a href="#hackathons" class="mobile-link">04. Hackathons</a>
+    <a href="#contact" class="mobile-link">05. Contact</a>
+  </div>
+
+  <!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+  <!-- ░░          HERO              ░░ -->
+  <!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+  <section id="hero">
+    <div class="hero-grid-overlay"></div>
+
+    <div class="hero-left">
+      <p class="hero-greeting reveal-up" data-delay="0">
+        <span class="prompt">$</span> Hello, World! I am —
+      </p>
+
+      <h1 class="hero-name">
+        <span class="name-line1 reveal-up glitch" data-text="SAMBHAV" data-delay="100">SAMBHAV</span>
+      </h1>
+
+      <div class="hero-typewriter reveal-up" data-delay="400">
+        <span class="prompt">&gt;&gt;</span>
+        <span id="typewriter-text"></span>
+        <span class="cursor-blink">|</span>
+      </div>
+
+      <p class="hero-desc reveal-up" data-delay="600">
+        Second-year Computer Science student at <span class="highlight">PDEU, Gujarat</span>.
+        Building digital solutions at the intersection of cybersecurity, web development
+        and software engineering. Based in <span class="highlight">Pokhara/Nepal 🇳🇵</span>.
+      </p>
+
+      <div class="hero-cta reveal-up" data-delay="800">
+        <a href="#projects" class="btn-primary magnetic">
+          <span class="btn-text">VIEW PROJECTS</span>
+          <span class="btn-glow"></span>
+        </a>
+        <a href="#contact" class="btn-secondary magnetic">
+          <span class="btn-text">GET IN TOUCH</span>
+        </a>
+      </div>
+
+      <div class="hero-socials reveal-up" data-delay="1000">
+        <a href="https://github.com/SambhavAdhikari" target="_blank" class="social-link magnetic" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/sambhav-adhikari-b74495346/" target="_blank" class="social-link magnetic" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <div class="social-line"></div>
+      </div>
+    </div>
+
+    <div class="hero-right reveal-right" data-delay="300">
+      <div class="terminal-window">
+        <div class="terminal-bar">
+          <span class="t-dot t-red"></span>
+          <span class="t-dot t-yellow"></span>
+          <span class="t-dot t-green"></span>
+          <span class="t-title">sambhav@pdeu:~</span>
+        </div>
+        <div class="terminal-body" id="terminal-body">
+          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">whoami</span></div>
+          <div class="t-line t-output">sambhav — cs student &amp; developer</div>
+          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">cat interests.txt</span></div>
+          <div class="t-line t-output t-accent">▶ Cybersecurity</div>
+          <div class="t-line t-output t-accent">▶ Web Development</div>
+          <div class="t-line t-output t-accent">▶ Software Systems</div>
+          <div class="t-line t-output t-accent">▶ Music</div>
+          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">ls languages/</span></div>
+          <div class="t-line t-output">C/  C++/  Python/  JavaScript/  HTML/  CSS/</div>
+          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">echo $STATUS</span></div>
+          <div class="t-line t-output t-green-text">Building cool things since 2023 🚀</div>
+          <div class="t-line"><span class="t-prompt">$</span> <span class="t-blink-cursor">_</span></div>
+        </div>
+      </div>
+
+      <div class="floating-badges">
+        <div class="badge badge-1 float-anim">
+          <span class="badge-icon">🛡️</span>
+          <span>Cybersecurity</span>
+        </div>
+        <div class="badge badge-2 float-anim" style="animation-delay:0.5s">
+          <span class="badge-icon">💻</span>
+          <span>2nd Year CSE</span>
+        </div>
+        <div class="badge badge-3 float-anim" style="animation-delay:1s">
+          <span class="badge-icon">⚡</span>
+          <span>Hackathoner</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      <span>SCROLL</span>
+    </div>
+  </section>
+
+
+  <!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+  <!-- ░░        ABOUT / EDUCATION   ░░ -->
+  <!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+  <section id="about">
+    <div class="section-header reveal-up">
+      <span class="section-num">01</span>
+      <h2 class="section-title">ABOUT_ME<span class="cursor-blink">_</span></h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-text reveal-left">
+        <p class="about-para">
+          I'm a passionate developer who loves building things from the ground up.
+          My curiosity drives me toward <span class="highlight">cybersecurity</span> and
+          <span class="highlight">software systems</span> — understanding how things break
+          and how to make them unbreakable.
+        </p>
+        <p class="about-para">
+          When I'm not coding, I'm either listening to music, competing in hackathons,
+          or exploring new technologies. I believe in writing clean, purposeful code
+          that solves real problems.
+        </p>
+        <div class="about-stats">
+          <div class="stat-card" data-count="3">
+            <span class="stat-num counter" data-target="3">0</span>
+            <span class="stat-label">Projects Built</span>
+          </div>
+          <div class="stat-card" data-count="2">
+            <span class="stat-num counter" data-target="2">0</span>
+            <span class="stat-label">Hackathons</span>
+          </div>
+          <div class="stat-card" data-count="5">
+            <span class="stat-num counter" data-target="5">0</span>
+            <span class="stat-label">Technologies</span>
+          </div>
+          <div class="stat-card" data-count="3">
+            <span class="stat-num counter" data-target="3">0</span>
+            <span class="stat-label">Languages Spoken</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="education-card reveal-right">
+        <div class="edu-header">
+          <span class="edu-icon">🎓</span>
+          <h3>EDUCATION</h3>
+        </div>
+        <div class="edu-body">
+          <div class="edu-degree">B.Tech — Computer Science</div>
+          <div class="edu-uni">Pandit Deendayal Energy University</div>
+          <div class="edu-location">Gujarat, India 🇮🇳</div>
+          <div class="edu-meta">
+            <span class="edu-badge">2nd Year</span>
+            <span class="edu-badge">Expected 2028</span>
+          </div>
+          <div class="coursework">
+            <p class="coursework-label">Relevant Coursework:</p>
+            <div class="course-tags">
+              <span class="tag">Data Structures & Algorithms</span>
+              <span class="tag">Software Engineering</span>
+              <span class="tag">Theory of Computation</span>
+              <span class="tag">Computer Organization</span>
+              <span class="tag">Web Development</span>
+            </div>
+          </div>
+        </div>
+        <div class="edu-scanner"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+  <!-- ░░          SKILLS            ░░ -->
+  <!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+  <section id="skills">
+    <div class="section-header reveal-up">
+      <span class="section-num">02</span>
+      <h2 class="section-title">SKILL_TREE<span class="cursor-blink">_</span></h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="skills-grid">
+
+      <!-- Programming Languages -->
+      <div class="skill-panel reveal-up" data-delay="0">
+        <div class="skill-panel-header">
+          <span class="panel-icon">⌨️</span>
+          <h3>PROGRAMMING LANGUAGES</h3>
+        </div>
+        <div class="skill-bars">
+          <div class="skill-item">
+            <div class="skill-info"><span>C</span><span class="skill-pct">80%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span>C++</span><span class="skill-pct">75%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span>Python</span><span class="skill-pct">70%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span>Java</span><span class="skill-pct">45%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-width="45"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Web Dev -->
+      <div class="skill-panel reveal-up" data-delay="150">
+        <div class="skill-panel-header">
+          <span class="panel-icon">🌐</span>
+          <h3>WEB DEVELOPMENT</h3>
+        </div>
+        <div class="skill-bars">
+          <div class="skill-item">
+            <div class="skill-info"><span>HTML</span><span class="skill-pct">90%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span>CSS</span><span class="skill-pct">85%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span>JavaScript</span><span class="skill-pct">72%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-width="72"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tools -->
+      <div class="skill-panel reveal-up" data-delay="300">
+        <div class="skill-panel-header">
+          <span class="panel-icon">🛠️</span>
+          <h3>TOOLS & TECH</h3>
+        </div>
+        <div class="tool-grid">
+          <div class="tool-chip">
+            <span class="tool-icon">🐙</span> Git
+          </div>
+          <div class="tool-chip">
+            <span class="tool-icon">💾</span> GitHub
+          </div>
+          <div class="tool-chip">
+            <span class="tool-icon">🐧</span> Linux
+          </div>
+          <div class="tool-chip">
+            <span class="tool-icon">💡</span> VS Code
+          </div>
+        </div>
+      </div>
+
+      <!-- Interests -->
+      <div class="skill-panel reveal-up" data-delay="450">
+        <div class="skill-panel-header">
+          <span class="panel-icon">🎯</span>
+          <h3>AREAS OF INTEREST</h3>
+        </div>
+        <div class="interest-list">
+          <div class="interest-item">
+            <span class="interest-dot"></span>
+            <span>Cybersecurity</span>
+          </div>
+          <div class="interest-item">
+            <span class="interest-dot"></span>
+            <span>Web Development</span>
+          </div>
+          <div class="interest-item">
+            <span class="interest-dot"></span>
+            <span>Software Systems</span>
+          </div>
+          <div class="interest-item">
+            <span class="interest-dot"></span>
+            <span>Technology Innovation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Soft Skills -->
+      <div class="skill-panel skill-panel-wide reveal-up" data-delay="600">
+        <div class="skill-panel-header">
+          <span class="panel-icon">🧠</span>
+          <h3>SOFT SKILLS</h3>
+        </div>
+        <div class="soft-skills-wrap">
+          <span class="soft-tag">Problem Solving</span>
+          <span class="soft-tag">Analytical Thinking</span>
+          <span class="soft-tag">Team Collaboration</span>
+          <span class="soft-tag">Time Management</span>
+          <span class="soft-tag">Technical Documentation</span>
+        </div>
+      </div>
+
+      <!-- Languages -->
+      <div class="skill-panel reveal-up" data-delay="750">
+        <div class="skill-panel-header">
+          <span class="panel-icon">🗣️</span>
+          <h3>LANGUAGES</h3>
+        </div>
+        <div class="lang-list">
+          <div class="lang-item">
+            <span class="lang-name">English</span>
+            <div class="lang-dots">
+              <span class="lang-dot filled"></span>
+              <span class="lang-dot filled"></span>
+              <span class="lang-dot filled"></span>
+              <span class="lang-dot filled"></span>
+              <span class="lang-dot"></span>
+            </div>
+          </div>
+          <div class="lang-item">
+            <span class="lang-name">Hindi</span>
+            <div class="lang-dots">
+              <span class="lang-dot filled"></span>
+              <span class="lang-dot filled"></span>
+              <span class="lang-dot filled"></span>
+              <span class="lang-dot filled"></span>
+              <span class="lang-dot"></span>
+            </div>
+          </div>
+          <div class="lang-item">
+            <span class="lang-name">Nepali</span>
+            <div class="lang-dots">
+              <span class="lang-dot filled"></span>
+              <span class="lang-dot filled"></span>
+              <span class="lang-dot filled"></span>
+              <span class="lang-dot filled"></span>
+              <span class="lang-dot filled"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+  <!-- ░░         PROJECTS           ░░ -->
+  <!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+  <section id="projects">
+    <div class="section-header reveal-up">
+      <span class="section-num">03</span>
+      <h2 class="section-title">PROJECTS<span class="cursor-blink">_</span></h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- Project 1 -->
+      <div class="project-card tilt-card reveal-up" data-delay="0">
+        <div class="project-card-inner">
+          <div class="project-header">
+            <span class="project-num">001</span>
+            <div class="project-links">
+              <span class="project-link-icon" title="View Code">⌘</span>
+            </div>
+          </div>
+          <div class="project-icon-wrap">
+            <div class="project-icon">📝</div>
+          </div>
+          <h3 class="project-name">Note Portal</h3>
+          <p class="project-desc">
+            A web-based platform for students to upload, organize, and access academic notes
+            with structured navigation and seamless content sharing.
+          </p>
+          <ul class="project-features">
+            <li>Upload & organize academic notes</li>
+            <li>Structured navigation interface</li>
+            <li>Content sharing between students</li>
+          </ul>
+          <div class="project-stack">
+            <span class="stack-tag">HTML</span>
+            <span class="stack-tag">CSS</span>
+            <span class="stack-tag">JavaScript</span>
+          </div>
+          <div class="project-glow"></div>
+          <div class="card-scanner"></div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card tilt-card reveal-up" data-delay="150">
+        <div class="project-card-inner">
+          <div class="project-header">
+            <span class="project-num">002</span>
+            <div class="project-links">
+              <span class="project-link-icon" title="View Code">⌘</span>
+            </div>
+          </div>
+          <div class="project-icon-wrap">
+            <div class="project-icon">⚡</div>
+          </div>
+          <h3 class="project-name">Quick Commerce Platform</h3>
+          <p class="project-desc">
+            A rapid-delivery commerce prototype inspired by modern q-commerce systems,
+            featuring product listing and simplified ordering flow.
+          </p>
+          <ul class="project-features">
+            <li>Product listing & browsing</li>
+            <li>Simplified ordering flow</li>
+            <li>Fully responsive front-end</li>
+          </ul>
+          <div class="project-stack">
+            <span class="stack-tag">HTML</span>
+            <span class="stack-tag">CSS</span>
+            <span class="stack-tag">JavaScript</span>
+          </div>
+          <div class="project-glow"></div>
+          <div class="card-scanner"></div>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card tilt-card reveal-up" data-delay="300">
+        <div class="project-card-inner">
+          <div class="project-header">
+            <span class="project-num">003</span>
+            <div class="project-links">
+              <span class="project-link-icon" title="View Code">⌘</span>
+            </div>
+          </div>
+          <div class="project-icon-wrap">
+            <div class="project-icon">🔍</div>
+          </div>
+          <h3 class="project-name">Lost & Found Portal</h3>
+          <p class="project-desc">
+            A community portal for reporting and tracking lost or found items,
+            designed for efficient communication and item recovery.
+          </p>
+          <ul class="project-features">
+            <li>Item reporting & tracking</li>
+            <li>Community-based search</li>
+            <li>Efficient communication flow</li>
+          </ul>
+          <div class="project-stack">
+            <span class="stack-tag">HTML</span>
+            <span class="stack-tag">CSS</span>
+            <span class="stack-tag">JavaScript</span>
+          </div>
+          <div class="project-glow"></div>
+          <div class="card-scanner"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+  <!-- ░░        HACKATHONS          ░░ -->
+  <!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+  <section id="hackathons">
+    <div class="section-header reveal-up">
+      <span class="section-num">04</span>
+      <h2 class="section-title">HACKATHONS<span class="cursor-blink">_</span></h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="hackathon-wrap">
+      <div class="hack-banner reveal-up">
+        <div class="hack-number">
+          <span class="hack-big-num counter" data-target="2">0</span>
+          <span class="hack-big-label">EVENTS</span>
+        </div>
+        <div class="hack-divider"></div>
+        <div class="hack-info">
+          <h3>HACKATHON PARTICIPANT</h3>
+          <p>
+            Participated in two major hackathons and counting, building technology solutions under intense
+            time constraints. Collaborated in cross-functional teams to design, develop,
+            and pitch functional prototypes from scratch.
+          </p>
+          <div class="hack-skills">
+            <div class="hack-skill">
+              <span class="hs-icon">⚡</span>
+              <span>Rapid Prototyping</span>
+            </div>
+            <div class="hack-skill">
+              <span class="hs-icon">🤝</span>
+              <span>Team Collaboration</span>
+            </div>
+            <div class="hack-skill">
+              <span class="hs-icon">🎯</span>
+              <span>Problem Solving</span>
+            </div>
+            <div class="hack-skill">
+              <span class="hs-icon">🎤</span>
+              <span>Project Pitching</span>
+            </div>
+          </div>
+        </div>
+        <div class="hack-scanner"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+  <!-- ░░         CONTACT            ░░ -->
+  <!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+  <section id="contact">
+    <div class="section-header reveal-up">
+      <span class="section-num">05</span>
+      <h2 class="section-title">CONTACT<span class="cursor-blink">_</span></h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="contact-wrap">
+      <div class="contact-left reveal-left">
+        <h3 class="contact-heading">Let's Build Something Together.</h3>
+        <p class="contact-sub">
+          Open to internships, collaborations, and interesting projects.
+          Hit me up — I reply fast.
+        </p>
+        <div class="contact-items">
+          <a href="mailto:atsa2815@gmail.com" class="contact-item magnetic">
+            <span class="ci-icon">📧</span>
+            <div>
+              <span class="ci-label">Email</span>
+              <span class="ci-val">atsa2815@gmail.com</span>
+            </div>
+          </a>
+          <a href="tel:+916395650021" class="contact-item magnetic">
+            <span class="ci-icon">📞</span>
+            <div>
+              <span class="ci-label">Phone</span>
+              <span class="ci-val">+91-6395650021 / +977-9844923972</span>
+            </div>
+          </a>
+          <a href="https://github.com/SambhavAdhikari" target="_blank" class="contact-item magnetic">
+            <span class="ci-icon">🐙</span>
+            <div>
+              <span class="ci-label">GitHub</span>
+              <span class="ci-val">github.com/SambhavAdhikari</span>
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/sambhav-adhikari-b74495346/" target="_blank" class="contact-item magnetic">
+            <span class="ci-icon">💼</span>
+            <div>
+              <span class="ci-label">LinkedIn</span>
+              <span class="ci-val">linkedin.com/in/sambhav-adhikari-b74495346</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-right reveal-right">
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="form-group">
+            <label for="name">YOUR NAME</label>
+            <input type="text" id="name" placeholder="John Doe" required />
+            <span class="form-line"></span>
+          </div>
+          <div class="form-group">
+            <label for="email">YOUR EMAIL</label>
+            <input type="email" id="email" placeholder="john@example.com" required />
+            <span class="form-line"></span>
+          </div>
+          <div class="form-group">
+            <label for="message">YOUR MESSAGE</label>
+            <textarea id="message" rows="5" placeholder="Let's work together..." required></textarea>
+            <span class="form-line"></span>
+          </div>
+          <button type="submit" class="btn-primary btn-submit magnetic">
+            <span class="btn-text">SEND MESSAGE</span>
+            <span class="btn-arrow">→</span>
+            <span class="btn-glow"></span>
+          </button>
+          <div class="form-success" id="form-success">
+            <span>✓ Message sent! I'll reply soon.</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ░░ FOOTER ░░ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="footer-brand">SAMBHAV</span>
+        <span class="footer-tagline">// Built with passion. Coded from scratch.</span>
+      </div>
+      <div class="footer-right">
+        <span class="footer-loc">📍 Pokhara/Nepal &amp; Gujarat, India</span>
+      </div>
+    </div>
+    <div class="footer-line"></div>
+    <p class="footer-copy">© 2025 Sambhav. Designed &amp; Developed by Sambhav.</p>
+  </footer>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
